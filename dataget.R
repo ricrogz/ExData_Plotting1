@@ -9,6 +9,8 @@ dlFile <- function(fileURL, fname) {
     
     if(!file.exists(fname)) {
         print("Downloading...")
+        
+        # check platform for appropriate method usage
         if (.Platform$OS.type == "windows")
             download.file(fileURL, destfile=fname)
         else
@@ -19,7 +21,7 @@ dlFile <- function(fileURL, fname) {
 }
 
 # Get the data, either downloading, preparing and storing a copy,
-# or opening the stored copy
+# or opening a stored clean copy
 getData <- function() {
     
     # Storage name
