@@ -93,7 +93,7 @@ mkPlot4 <- function() {
   png(file = "plot4.png", width = 480, height = 480, units = "px")
   
   # replot
-  drawPlot(mydata)
+  drawPlot4(mydata)
   
   # close PNG device
   dev.off()

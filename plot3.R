@@ -59,7 +59,7 @@ mkPlot3 <- function() {
   png(file = "plot3.png", width = 480, height = 480, units = "px")
   
   # replot
-  drawPlot(mydata)
+  drawPlot3(mydata)
   
   # close PNG device
   dev.off()
