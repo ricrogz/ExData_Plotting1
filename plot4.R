@@ -8,7 +8,7 @@ source("dataget.R")
 
 # function to make the plotting of "data".
 # It sets all relevant parameters, just in case.
-drawPlot <- function(data) {
+drawPlot4 <- function(data) {
   
   # Set background to transparent and set up
   # mult-plots (fill columns first).
@@ -79,7 +79,7 @@ mkPlot4 <- function() {
   mydata <- getData()
   
   # make plot on screen
-  drawPlot(mydata)
+  drawPlot4(mydata)
   
   # In a more complex problem, there would be some code
   # to ask the user if he/she is satisfied with the current

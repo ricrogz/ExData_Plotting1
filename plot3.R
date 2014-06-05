@@ -1,10 +1,10 @@
+# multiplots and dev.copy seem not to work too well together,
+# so, this time, I'll use a slightly different approach
+
 # Load the code to get the data we are going to work on
 source("dataget.R")
 
-mkPlot3 <- function() {
-  
-  # Acquire data
-  data <- getData()
+drawPlot3 <- function(data) {
   
   # Set background to transparent.
   # Reduce fonts -- my linux fonts are HUGE!
@@ -35,20 +35,35 @@ mkPlot3 <- function() {
   legend("topright", legend = legendText, col =legendColors,
          lty = legendTypes)
   
+  # we could use this to check finalization
+  invisible(TRUE)
+}
+
+
+mkPlot3 <- function() {
+  # Acquire data
+  mydata <- getData()
+  
+  # make plot on screen
+  drawPlot3(mydata)
+  
   # In a more complex problem, there would be some code
   # to ask the user if he/she is satisfied with the current
   # plot, or wants to recalculate. If satisfied,
-  # we would dump the plot to a PNG file in the following
-  # way:
-
-  # copy plot over to PNG device with specified parameters
-  dev.copy(png, file = "plot3.png", width = 480, height = 480,
-           units = "px")
-    
+  # we would produce the PNG.
+  
+  # This time we replot from scratch: copying with
+  # dev.copy makes funny things to some object's positions.
+  
+  # open PNG device
+  png(file = "plot3.png", width = 480, height = 480, units = "px")
+  
+  # replot
+  drawPlot(mydata)
+  
   # close PNG device
   dev.off()
   
   # Show a nice label saying we are done :)
-  "Plotting done"
-  
+  "Plotting done"  
 }
