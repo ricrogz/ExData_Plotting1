@@ -1,6 +1,13 @@
+# multiplots and dev.copy seem not to work too well together,
+# so, this time, I'll use a slightly different approach
+
+
 # Load the code to get the data we are going to work on
 source("dataget.R")
 
+
+# function to make the plotting of "data".
+# It sets all relevant parameters, just in case.
 drawPlot <- function(data) {
   
   # Set background to transparent and set up
@@ -26,6 +33,7 @@ drawPlot <- function(data) {
   
   # Make 2nd plot, like plot3 (same code, too)
   # to be put right under 1st
+  
   # Create blank screen plot
   plot(data$DateTime, data$Sub_metering_1, 
        typ = "n", main="", xlab = "", 
@@ -42,7 +50,6 @@ drawPlot <- function(data) {
   
   legendColors <- c("black", "red", "blue")
   
-
   # Small change in this one: box line is transparent
   legend("topright", legend = legendText, col =legendColors,
          lty = 1, bty = "n")
@@ -57,14 +64,17 @@ drawPlot <- function(data) {
   # Make last plot, similar to the previous one
   plot(data$DateTime, data$Global_reactive_power,
        typ = "l", main="", xlab = "datetime", 
-       ylab = "Global_reactive_power", cex = 0.4)  
+       ylab = "Global_reactive_power")  
+  
+  # Reset multi-plot
+  par(mfcol = c(1,1))  
   
   # we could use this to check finalization
   invisible(TRUE)
 }
 
 
-mkPlot4<- function() {
+mkPlot4 <- function() {
   # Acquire data
   mydata <- getData()
   
@@ -87,9 +97,6 @@ mkPlot4<- function() {
   
   # close PNG device
   dev.off()
-  
-  # Reset multi-plot
-  par(mfcol = c(1,1))
   
   # Show a nice label saying we are done :)
   "Plotting done"  
